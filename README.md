@@ -21,4 +21,7 @@ Contents of This Repository:
 #### Naming Convention and Best Storage Practices: 
     
 - Each dataset should be saved in a separate table in postgres. 
-- The naming convention should be as follows: "[project name]__[contractor who flew the lidar]__[date the lidar was flown]"
+- The naming convention should be as follows: "[project name]__[contractor who flew the lidar]__[date the lidar was flown in day/month/year format]"
+- The user should make a copy of the json and py files listed above, save them to the colder containing the las files, and rename them to: 
+    - loopthru_'project name'.py 
+    - pipeline_'projectname'.json

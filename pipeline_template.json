@@ -1,0 +1,20 @@
+{
+  "pipeline":[
+    {
+      "type":"readers.las",
+      "filename":"{las_file_path}",
+      "spatialreference":"EPSG:2259"
+    },
+    {
+      "type":"filters.chipper",
+      "capacity":400
+    },
+    {
+      "type":"writers.pgpointcloud",
+      "connection": "dbname='postgres' host='10.0.160.XXXXX' user='postgres' password='XXXXX'",
+      "table":"project_contractor_date",
+      "compression":"dimensional",
+      "srid":"2259"
+    }
+  ]
+}
