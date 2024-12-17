@@ -21,4 +21,4 @@ Contents of This Repository:
 #### Naming Convention and Best Storage Practices: 
     
 - Each dataset should be saved in a separate table in postgres. 
-- The naming convention should be as follows: [project name]_[contractor who flew the lidar]_[date the lidar was flown]
+- The naming convention should be as follows: "[project name]__[contractor who flew the lidar]__[date the lidar was flown]"
