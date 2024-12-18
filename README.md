@@ -31,7 +31,17 @@ As listed on PDALs homepage (listed above), create a new environment and run `co
 1. `SELECT COUNT(*), SUM(PC_NumPoints(pa)) FROM public.[tablename];` 
     Counts the number of points and patches in the table. 
 
-2. `SELECT Find_SRID('', 'your_pointcloud_table', 'pa');`
+2. `SELECT Find_SRID('', 'public.[tablename]', 'pa');`
     
 3. `SELECT ST_Extent((PC_Envelope(pa))::geometry) AS bounding_box FROM public.keyholewind_geoterra_02102024;`
     Get bounding box information for the dataset. 
+
+## QAQC 
+    After ingesting the data, its important to run Quality Control on the dataset.
+    - Does the summary sheet that comes with the data in accordance with our spec?  
+    - Did all the las files come from the consultant in order? Are there any numbers missing? 
+    - Are the las files sized appropriately? Are any of them egregiously large or small? 
+    - Did the data ingest throw any errors? 
+    - When running `SELECT COUNT(*), SUM(PC_NumPoints(pa)) FROM public.[tablename];` , does the number of patches, multiplied by patch size, equal the total number of points ? 
+    - Pull the data into a map in QGIS. Does the data cover the expected project area? 
+    
