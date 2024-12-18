@@ -6,9 +6,9 @@ A repo for lidar data management and other process storage.
 Pdal is the only package necessary for this ingestion process. It is highly recommended that you set up an anaconda or miniconda environment specifically to house the PDAL package, as it has lots of dependencies and doesn't play nicely with others. See more information at https://pdal.io/en/2.8.2/ . 
 As listed on PDALs homepage (listed above), create a new environment and run `conda install -c conda-forge pdal python-pdal gdal` to install PDAL. 
 
- - IF you are needing access to the GIS-Automation VM PostgreSQL Database for lidar storage, please reachout to Josh with Neighborhood IT, Abby Hildebrandt, or Jacob Paul.
+ - If you are needing access to the GIS-Automation VM PostgreSQL Database for lidar storage, please reachout to Josh with Neighborhood IT, Abby Hildebrandt, or Jacob Paul.
 
-Contents of This Repository: 
+## Contents of This Repository: 
 
 1. pipeline_template.json
     This pipeline contains the pg_pointcloud specific instructions for importing the data into postgres. For more information about exactly how to format this pipeline, see https://pgpointcloud.github.io/pointcloud/quickstart.html#running-a-pipeline . This pipeline is referenced in the loopthru.py execution script referenced below. 
@@ -25,3 +25,13 @@ Contents of This Repository:
 - The user should make a copy of the json and py files listed above, save them to the colder containing the las files, and rename them to: 
     - loopthru_'project name'.py 
     - pipeline_'projectname'.json
+
+### A few SQL queries and what they do: 
+
+1. `SELECT COUNT(*), SUM(PC_NumPoints(pa)) FROM public.[tablename];` 
+    Counts the number of points and patches in the table. 
+
+2. `SELECT Find_SRID('', 'your_pointcloud_table', 'pa');`
+    
+3. `SELECT ST_Extent((PC_Envelope(pa))::geometry) AS bounding_box FROM public.keyholewind_geoterra_02102024;`
+    Get bounding box information for the dataset. 
