@@ -63,6 +63,17 @@ Calculate point density of a given bounding box. Note the bounding box must be i
 ```
 SELECT ST_Extent((PC_Envelope(pa))::geometry) AS bounding_box FROM public.[tablename];
 ```
+5. 
+
+## Reference Guide
+Upon completion of data ingest, the user should add a new row to the **public.scoutprojects_referenceguide**, which specifies: 
+- Table Name of data that was ingested 
+- SRID
+- Primary Key ID (integer in order)
+- Contractor 
+- Date of Flight in Day/Month/Year
+
+Enter this information manually by adding a new row to the table. 
 
 ## QAQC 
 
