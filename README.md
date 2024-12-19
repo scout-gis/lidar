@@ -41,11 +41,12 @@ NOTE: The loopthru file and the pipeline json should be located within the folde
     Get bounding box information for the dataset. 
 
 ## QAQC 
+
 After ingesting the data, its important to run Quality Control on the dataset.
-    - Does the summary sheet that comes with the data in accordance with our spec?  
-    - Did all the las files come from the consultant in order? Are there any numbers missing? 
-    - Are the las files sized appropriately? Are any of them egregiously large or small? 
-    - Did the data ingest throw any errors? 
-    - When running `SELECT COUNT(*), SUM(PC_NumPoints(pa)) FROM public.[tablename];` , does the number of patches, multiplied by patch size, equal the total number of points ? 
-    - Pull the data into a map in QGIS. Does the data cover the expected project area? 
+- Does the summary sheet that comes with the data in accordance with our spec?  
+- Did all the las files come from the consultant in order? Are there any numbers missing? 
+- Are the las files sized appropriately? Are any of them egregiously large or small? 
+- Did the data ingest throw any errors? 
+- When running `SELECT COUNT(*), SUM(PC_NumPoints(pa)) FROM public.[tablename];` , does the number of patches, multiplied by patch size, equal the total number of points ? 
+- Pull the data into a map in QGIS. Does the data cover the expected project area? 
     
