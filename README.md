@@ -37,7 +37,8 @@ NOTE: The loopthru file and the pipeline json should be located within the folde
 
 2. `SELECT Find_SRID('', 'public.[tablename]', 'pa');`
     
-3. ```SELECT ST_AsGeoJSON(
+3. ``` 
+SELECT ST_AsGeoJSON(
         ST_Transform(
             ST_SetSRID(
                 ST_Extent((PC_Envelope(pa))::geometry), 
@@ -45,8 +46,9 @@ NOTE: The loopthru file and the pipeline json should be located within the folde
             ),
             4326
         )
-    ) AS geojson_bounding_box
-    FROM public.keyholewind_geoterra_02102024;
+) AS geojson_bounding_box
+FROM public.keyholewind_geoterra_02102024;
+``` 
 
 ## QAQC 
 
