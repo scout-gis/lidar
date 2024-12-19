@@ -14,14 +14,18 @@ As listed on PDALs homepage (listed above), create a new environment and run `co
     This pipeline contains the pg_pointcloud specific instructions for importing the data into postgres. For more information about exactly how to format this pipeline, see https://pgpointcloud.github.io/pointcloud/quickstart.html#running-a-pipeline . This pipeline is referenced in the loopthru.py execution script referenced below. 
 
 2. loopthru.py
-    This python script allows the user to loop thru all the las files in a folder and ingest them using a single command, instead of going file by file. The loopthru script takes 2 inputs, the location of the above pipeline json, and the location of the las files. 
+    This python script allows the user to loop thru all the las files in a folder and ingest them using a single command, instead of going file by file. The loopthru script takes 2 inputs, the location of the above pipeline json, and the location of the las files.
 
- NOTE: The loopthru file and the pipeline json should be located within the folder containing the las files when the user runs the loop thru file.  
+NOTE: The loopthru file and the pipeline json should be located within the folder containing the las files when the user runs the loop thru file.
+
+3. export_pipeline_template.json
+    This pipeline is the most basic form of exporting the PostgreSQL table into a las file, to be brought into a GIS software or sent to a consultant. Note that this pipeline will export the entire table into one las file, which is likely not conducive for large data transfers. 
+ 
 
 #### Naming Convention and Best Storage Practices: 
     
 - Each dataset should be saved in a separate table in postgres. 
-- The naming convention should be as follows: "project name_contractor who flew the lidar_date the lidar was flown in day/month/year format"
+- The naming convention should be as follows: "PROJECTNAME_CONTRACTOR_DATEOFFLY DAY/MONTH/YEAR"
 - The user should make a copy of the json and py files listed above, save them to the folder containing the las files, and rename them to: 
     - loopthru_'project name'.py 
     - pipeline_'projectname'.json
@@ -37,7 +41,7 @@ As listed on PDALs homepage (listed above), create a new environment and run `co
     Get bounding box information for the dataset. 
 
 ## QAQC 
-    After ingesting the data, its important to run Quality Control on the dataset.
+After ingesting the data, its important to run Quality Control on the dataset.
     - Does the summary sheet that comes with the data in accordance with our spec?  
     - Did all the las files come from the consultant in order? Are there any numbers missing? 
     - Are the las files sized appropriately? Are any of them egregiously large or small? 
