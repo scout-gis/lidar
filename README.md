@@ -38,7 +38,7 @@ NOTE: The loopthru file and the pipeline json should be located within the folde
 2. `SELECT Find_SRID('', 'public.[tablename]', 'pa');`
     
 3. 
-``` abby
+``` 
 SELECT ST_AsGeoJSON(
         ST_Transform(
             ST_SetSRID(
@@ -48,8 +48,21 @@ SELECT ST_AsGeoJSON(
             4326
         )
 ) AS geojson_bounding_box
-FROM public.keyholewind_geoterra_02102024;
+FROM public.[tablename];
 ``` 
+Queries for the bounding box of the pcpatches within the table, and converts to a readable format. User must enter the table name and SRID, referenced in **public.scoutprojects_referenceguide** 
+
+4. 
+```
+SELECT SUM(PC_NumPoints(pa)) AS points_in_bbox
+FROM public.keyholewind_geoterra_02102024
+WHERE PC_Intersects(pa, ST_MakeEnvelope(6399183.99, 2132471.29, 6432142.96, 2163994.4, 2229));
+``` 
+Calculate point density of a given bounding box. Note the bounding box must be in easting northing format (Projected Coordinate Format). To get the total project bounding box, run the below query. 
+
+```
+SELECT ST_Extent((PC_Envelope(pa))::geometry) AS bounding_box FROM public.[tablename];
+```
 
 ## QAQC 
 
