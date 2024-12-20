@@ -34,10 +34,8 @@ NOTE: The loopthru file and the pipeline json should be located within the folde
 
 1. `SELECT COUNT(*), SUM(PC_NumPoints(pa)) FROM public.[tablename];` 
     Counts the number of points and patches in the table. 
-
-2. `SELECT Find_SRID('', 'public.[tablename]', 'pa');`
     
-3. 
+2. 
 ``` 
 SELECT ST_AsGeoJSON(
         ST_Transform(
@@ -52,7 +50,7 @@ FROM public.[tablename];
 ``` 
 Queries for the bounding box of the pcpatches within the table, and converts to a readable format. User must enter the table name and SRID, referenced in **public.scoutprojects_referenceguide** 
 
-4. 
+3. 
 ```
 SELECT SUM(PC_NumPoints(pa)) AS points_in_bbox
 FROM public.keyholewind_geoterra_02102024
@@ -63,7 +61,18 @@ Calculate point density of a given bounding box. Note the bounding box must be i
 ```
 SELECT ST_Extent((PC_Envelope(pa))::geometry) AS bounding_box FROM public.[tablename];
 ```
-5. 
+4. 
+``` 
+SELECT 
+    MIN(PC_Get(pt, 'Z')) AS min_z,
+    MAX(PC_Get(pt, 'Z')) AS max_z,
+    AVG(PC_Get(pt, 'Z')) AS avg_z
+FROM (
+    SELECT PC_Explode(pa) AS pt
+    FROM public.[tablename]
+) exploded_points;
+```
+Calculates the maximum, minimum, and average z value, in Ft. 
 
 ## Reference Guide
 Upon completion of data ingest, the user should add a new row to the **public.scoutprojects_referenceguide**, which specifies: 
@@ -84,4 +93,11 @@ After ingesting the data, its important to run Quality Control on the dataset.
 - Did the data ingest throw any errors? 
 - When running `SELECT COUNT(*), SUM(PC_NumPoints(pa)) FROM public.[tablename];` , does the number of patches, multiplied by patch size, equal the total number of points ? 
 - Pull the data into a map in QGIS. Does the data cover the expected project area? 
-    
+
+
+## Alternative Deliverables 
+
+#### DTM: 
+The GIS team can provide a DTM for Engineering or any other department that might require one. We will need a .las file or bounding box of the area of interest. 
+Example: 
+![Alt text](C:\Users\AbbyHildebrandt\Documents\repos\lidar\README.md)
