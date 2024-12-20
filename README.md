@@ -100,4 +100,4 @@ After ingesting the data, its important to run Quality Control on the dataset.
 #### DTM: 
 The GIS team can provide a DTM for Engineering or any other department that might require one. We will need a .las file or bounding box of the area of interest. 
 Example: 
-![Alt text](images\great_divide_test5.png)
+![Alt text](images\Screenshot120704.png)
