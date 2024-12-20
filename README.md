@@ -20,6 +20,9 @@ NOTE: The loopthru file and the pipeline json should be located within the folde
 
 3. export_pipeline_template.json
     This pipeline is the most basic form of exporting the PostgreSQL table into a las file, to be brought into a GIS software or sent to a consultant. Note that this pipeline will export the entire table into one las file, which is likely not conducive for large data transfers. 
+
+4. dtm_template.json
+    This pipeline will create a Digital Terrain Model from the inputted las file. 
  
 
 #### Naming Convention and Best Storage Practices: 
@@ -100,4 +103,5 @@ After ingesting the data, its important to run Quality Control on the dataset.
 #### DTM: 
 The GIS team can provide a DTM for Engineering or any other department that might require one. We will need a .las file or bounding box of the area of interest. 
 Example: 
-![Alt text](images\Screenshot120704.png)
+![Alt text](https://github.com/scout-gis/lidar/blob/main/images%5CScreenshot120704.png)
+
